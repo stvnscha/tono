@@ -25,13 +25,17 @@ header svg {
 }
 
 footer {
-  width: 100%;
+  width: 100vw;
+  transform: none !important; 
+  position: relative;
   background: black;
   color: white;
   text-align: center;
   padding: 18px 0;
   font-size: 14px;
+  left: 0;
 }
+
 
 
 /* ====================== WHITE BOX ====================== */
@@ -289,4 +293,5 @@ footer {
   padding: 8px 10px;
 
 }
+
 
