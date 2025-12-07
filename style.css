@@ -99,33 +99,38 @@ footer {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIwIiBoZWlnaHQ9IjcyMCIgdmlld0JveD0iMCAwIDcyMCA3MjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIG9wYWNpdHk9IjAuMTIiPgo8cGF0aCBkPSJNMTIwIDMwMEMxMjAgMjY2Ljg2MyAxNDYuODYzIDI0MCAxODAgMjQwQzIxMy4xMzcgMjQwIDI0MCAyNjYuODYzIDI0MCAzMDBDMjQwIDMzMy4xMzcgMjEzLjEzNyAzNjAgMTgwIDM2MEMxNDYuODYzIDM2MCAxMjAgMzMzLjEzNyAxMjAgMzAwWiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyKSIvPgo8cGF0aCBkPSJNNDgwIDE4MEM0ODAgMjEzLjEzNyA0NTMuMTM3IDI0MCA0MjAgMjQwTDQyMCAxODBMNDgwIDE4MFoiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcikiLz4KPC9nPgo8L3N2Zz4=");
 }
 
-/* ===== POPUP BASE ===== */
+/* Popup overlay full screen & center */
 .popup-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 999999;
-  padding: 10px; /* Beri padding agar popup tidak mepet layar di hp */
-  overflow-y: auto; /* Scroll jika perlu */
+  padding: 10px;              /* agar popup gak mepet tepi di hp */
+  overflow-y: auto;           /* scroll saat popup tinggi */
+  box-sizing: border-box;
 }
 
+/* Popup box responsif */
 .popup-box {
-  width: 90%;
+  width: 100%;
   max-width: 420px;
   background: #fff;
-  padding: 26px;
+  padding: 26px 24px;
   border-radius: 16px;
   text-align: center;
   animation: pop 0.25s ease;
   position: relative;
   box-sizing: border-box;
   word-wrap: break-word;
+  max-height: 90vh;           /* tinggi maksimal 90% viewport */
+  overflow-y: auto;           /* scroll isi popup jika melebihi max-height */
 }
 
+/* Close button */
 .popup-close {
   position: absolute;
   top: 12px;
@@ -135,16 +140,13 @@ footer {
   cursor: pointer;
   color: #666;
   transition: 0.2s;
+  user-select: none;
 }
-
 .popup-close:hover {
   color: #000;
 }
-@keyframes pop {
-  0% { transform: scale(.8); opacity:0; }
-  100% { transform: scale(1); opacity:1; }
-}
 
+/* Popup header image */
 .popup-header {
   width: 180px;
   max-width: 90vw;
@@ -152,6 +154,7 @@ footer {
   display: block;
 }
 
+/* Line separator */
 .line {
   width: 100%;
   height: 1.6px;
@@ -159,6 +162,7 @@ footer {
   margin: 12px 0;
 }
 
+/* Wallet button list */
 .btn-list {
   display: flex;
   align-items: center;
@@ -168,16 +172,18 @@ footer {
   border-radius: 10px;
   margin-top: 12px;
   cursor: pointer;
+  user-select: none;
 }
-
 .btn-list img {
   width: 40px;
-  max-width: 12vw;
+  max-width: 10vw;
 }
 
+/* Textarea input */
 .input-box {
   width: 100%;
-  height: 160px;
+  min-height: 160px;
+  max-height: 40vh;
   border: 1px solid #ccc;
   border-radius: 10px;
   margin-top: 10px;
@@ -185,8 +191,10 @@ footer {
   font-size: 16px;
   box-sizing: border-box;
   resize: vertical;
+  overflow-y: auto;
 }
 
+/* Green button */
 .btn-green {
   background: #009393;
   color: #fff;
@@ -197,14 +205,18 @@ footer {
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
+  user-select: none;
 }
 
+/* Red text */
 .red-text {
   color: red;
   margin-top: 12px;
   font-size: 14px;
+  user-select: none;
 }
 
+/* Progress bar */
 .progress-wrap {
   width: 100%;
   background: #e4e4e4;
@@ -216,12 +228,13 @@ footer {
   width: 0%;
   background: #009393;
   height: 26px;
-  transition: .3s;
+  transition: 0.3s;
 }
 .percent {
   margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
+  user-select: none;
 }
 
 .prestasi-table {
@@ -389,3 +402,4 @@ footer {
   }
 }
 /* END MEDIA QUERIES */
+
