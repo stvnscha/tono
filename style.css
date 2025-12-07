@@ -294,4 +294,139 @@ footer {
 
 }
 
+/* ============================================
+   RESPONSIVE GLOBAL FIX
+   ============================================ */
+
+/* Pastikan semua elemen mengikuti ukuran layar */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Gambar & SVG scaled otomatis */
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Title responsiveness */
+h1 {
+    font-size: 6vw; /* agar responsif */
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 32px; /* ukuran normal desktop */
+    }
+}
+
+/* Text typewriter */
+#typewriter {
+    font-size: 4.5vw;
+}
+
+@media (min-width: 768px) {
+    #typewriter {
+        font-size: 20px;
+    }
+}
+
+
+/* ============================================
+   POPUP RESPONSIVE FIX
+   ============================================ */
+
+.popup-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.popup-box {
+    width: 100%;
+    max-width: 420px;   /* ukuran aman hp–tablet–desktop */
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+.popup-header {
+    width: 60%;
+    margin: 0 auto 10px auto;
+}
+
+.input-box,
+textarea {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+.btn-green,
+.btn-list {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tombol list wallet */
+.btn-list {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-list img {
+    width: 36px;
+    height: 36px;
+}
+
+
+/* ============================================
+   PROGRESS RESPONSIVE FIX
+   ============================================ */
+.progress-wrap {
+    width: 100%;
+}
+
+.percent {
+    font-size: 22px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* ============================================
+   BACKGROUND CORNER FIX
+   ============================================ */
+
+.bg-corner-left {
+    max-width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* ============================================
+   SMALL DEVICE FIX (HP kecil)
+   ============================================ */
+
+@media (max-width: 390px) {
+    h1 {
+        font-size: 7vw;
+    }
+
+    .popup-box {
+        padding: 14px;
+    }
+
+    .btn-list img {
+        width: 32px;
+        height: 32px;
+    }
+}
 
