@@ -25,14 +25,18 @@ header svg {
 }
 
 footer {
-  width: 100%;
+  width: 100vw;
+  transform: none !important; 
+  position: relative;
   background: black;
   color: white;
   text-align: center;
   padding: 18px 0;
   font-size: 14px;
-  margin-top: auto; /* tambahan */
+  left: 0;
 }
+
+
 
 /* ====================== WHITE BOX ====================== */
 .white-box {
@@ -287,7 +291,10 @@ footer {
 }
 #liveTable td {
   padding: 8px 10px;
+
 }
+
+
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
@@ -378,3 +385,4 @@ footer {
   word-break: break-word;
   max-width: 150px;
 }
+
