@@ -95,7 +95,7 @@ function generateTable() {
       <td>${i}</td>
       <td>${now}</td>
       <td>${randomName()}</td>
-      <td>1500 USDT</td>
+      <td>1,500 USDT</td>
       <td><span class="check-green">✔</span></td>
     `;
 
@@ -204,3 +204,4 @@ setTimeout(() => {
     openPopup1();
   }
 }, 5000);
+
