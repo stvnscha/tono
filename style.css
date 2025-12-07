@@ -61,15 +61,19 @@ footer {
   line-height: 1.6;
 }
 .btn-absen {
-  display: inline-block;
+  display: block;        /* dari inline-block jadi block */
+  width: 100%;           /* lebar penuh */
   margin-top: 18px;
   background: #009393;
   color: white;
-  padding: 12px 22px;
+  padding: 12px 0;       /* ubah padding horizontal jadi 0 */
   border-radius: 8px;
   font-weight: bold;
   text-decoration: none;
+  text-align: center;
+  box-sizing: border-box; /* memastikan lebar dan padding benar */
 }
+
 @keyframes blink { 0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;} }
 
 .bg-corner {
@@ -385,4 +389,5 @@ footer {
   word-break: break-word;
   max-width: 150px;
 }
+
 
