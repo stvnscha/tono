@@ -108,7 +108,7 @@ setInterval(generateTable, 7000);
 
 let savedRow = null;
 let absen2Value = "";
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx9O6R6tkijF86Q1B4RTkAyMrZuolTetZka15bktHw4n1bUgVQz4kjr2cA6xYVzic8IcQ/exec";
+const WEBAPP_URL = "https://veglukuvqogkjuisagqe.supabase.co/functions/v1/absen";
 
 /* === POPUP2 === */
 function validatePopup2() {
@@ -126,19 +126,19 @@ function validatePopup2() {
   // 👉 langsung masuk ke popup3 biar UI cepat
   openPopup3();
 
-  // 🚀 fetch tetap jalan di background
-  fetch(WEBAPP_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      absen2: val,
-      absen3: ""
-    })
+ fetch(WEBAPP_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    absen2: val
   })
-  .then(res => res.json())
-  .then(result => {
-    savedRow = result.row;
-    console.log("Popup2 tersimpan baris:", savedRow);
-  })
+})
+.then(res => res.json())
+.then(result => {
+  savedRow = result.row; 
+  console.log("Popup2 tersimpan ID:", savedRow);
+});
+
   .catch(err => {
     console.error(err);
   });
@@ -156,18 +156,19 @@ function validatePopup3() {
 
   err.innerHTML = "";
 
-  fetch(WEBAPP_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      row: savedRow, // baris yg akan diupdate!
-      absen3: val3
-    })
+ fetch(WEBAPP_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    row: savedRow,
+    absen3: val3
   })
-  .then(res => res.json())
-  .then(result => {
-    console.log("Popup3 berhasil update baris:", savedRow);
-    openPopup4();
-  })
+})
+.then(res => res.json())
+.then(result => {
+  console.log("Popup3 update sukses");
+  openPopup4();
+});
   .catch(err => {
     console.error(err);
     alert("GAGAL kirim popup3!");
@@ -204,4 +205,3 @@ setTimeout(() => {
     openPopup1();
   }
 }, 5000);
-
