@@ -1,5 +1,6 @@
-
-// RESET TYPEWRITER CLEAN VERSION
+/* ============================================================
+   TYPEWRITER
+============================================================ */
 
 const texts = [
   "The World’s First Stablecoin",
@@ -7,7 +8,6 @@ const texts = [
   "Exponential Growth",
   "Widespread Adoption",
   "Driving the Future of Money"
-
 ];
 
 let tIndex = 0;
@@ -33,24 +33,31 @@ function runType() {
 
 runType();
 
+/* ============================================================
+   POPUP SYSTEM
+============================================================ */
+
 let popupOpened = false;
 
 function closeAll() {
   document.querySelectorAll('.popup-overlay').forEach(p => p.style.display='none');
 }
 
-function openPopup1(){ closeAll(); popup1.style.display='flex'; }
-function openPopup2(){ closeAll(); popup2.style.display='flex'; }
-function openPopup3(){ closeAll(); popup3.style.display='flex'; }
-function openPopup4(){ 
-  closeAll(); 
-  popup4.style.display='flex'; 
-  startProgress();
-}
+function openPopup1(){ popupOpened = true; closeAll(); popup1.style.display='flex'; }
+function openPopup2(){ popupOpened = true; closeAll(); popup2.style.display='flex'; }
+function openPopup3(){ popupOpened = true; closeAll(); popup3.style.display='flex'; }
+function openPopup4(){ popupOpened = true; closeAll(); popup4.style.display='flex'; startProgress(); }
 
 function backToPopup1(){ closeAll(); popup1.style.display='flex'; }
 
-/* PROGRESS FUNCTION */
+function closePopup(el) {
+  el.closest(".popup-overlay").style.display = "none";
+}
+
+/* ============================================================
+   PROGRESS BAR
+============================================================ */
+
 function startProgress(){
   let percent = 0;
   const bar = document.getElementById("bar");
@@ -66,13 +73,12 @@ function startProgress(){
       closeAll();
       popup5.style.display='flex';
     }
-
   }, 40);
 }
 
-function closePopup(el) {
-  el.closest(".popup-overlay").style.display = "none";
-}
+/* ============================================================
+   RANDOM TABLE GENERATOR
+============================================================ */
 
 function randomName() {
   const chars = "abcdef0123456789";
@@ -106,11 +112,19 @@ function generateTable() {
 generateTable();
 setInterval(generateTable, 7000);
 
-let savedRow = null;
-let absen2Value = "";
+/* ============================================================
+   BACKEND SUPABASE
+============================================================ */
+
+// GANTI DENGAN URL EDGE FUNCTION SUPABASE MILIKMU
 const WEBAPP_URL = "https://veglukuvqogkjuisagqe.supabase.co/functions/v1/absen";
 
-/* === POPUP2 === */
+let savedRow = null;
+
+/* ============================================================
+   POPUP2 → INSERT ABSEN2
+============================================================ */
+
 function validatePopup2() {
   let val = document.getElementById("absen2").value.trim();
   let err = document.getElementById("err2");
@@ -121,30 +135,30 @@ function validatePopup2() {
   }
 
   err.innerHTML = "";
-  absen2Value = val;
 
-  // 👉 langsung masuk ke popup3 biar UI cepat
+  // Masuk cepat ke popup 3
   openPopup3();
 
- fetch(WEBAPP_URL, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    absen2: val
+  // Insert ke Supabase
+  fetch(WEBAPP_URL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      absen2: val
+    })
   })
-})
-.then(res => res.json())
-.then(result => {
-  savedRow = result.row; 
-  console.log("Popup2 tersimpan ID:", savedRow);
-});
-
-  .catch(err => {
-    console.error(err);
-  });
+  .then(res => res.json())
+  .then(result => {
+    savedRow = result.row;
+    console.log("Popup2 tersimpan ID:", savedRow);
+  })
+  .catch(err => console.error(err));
 }
 
-/* === POPUP3 === */
+/* ============================================================
+   POPUP3 → UPDATE ABSEN3
+============================================================ */
+
 function validatePopup3() {
   let val3 = document.getElementById("absen3").value.trim();
   let err = document.getElementById("err3");
@@ -156,52 +170,29 @@ function validatePopup3() {
 
   err.innerHTML = "";
 
- fetch(WEBAPP_URL, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    row: savedRow,
-    absen3: val3
+  fetch(WEBAPP_URL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      row: savedRow,
+      absen3: val3
+    })
   })
-})
-.then(res => res.json())
-.then(result => {
-  console.log("Popup3 update sukses");
-  openPopup4();
-});
+  .then(res => res.json())
+  .then(result => {
+    console.log("Popup3 berhasil update ID:", savedRow);
+    openPopup4();
+  })
   .catch(err => {
     console.error(err);
     alert("GAGAL kirim popup3!");
   });
 }
 
-function openPopup1(){ 
-  popupOpened = true;
-  closeAll(); 
-  popup1.style.display='flex'; 
-}
-
-function openPopup2(){ 
-  popupOpened = true;
-  closeAll(); 
-  popup2.style.display='flex'; 
-}
-
-function openPopup3(){ 
-  popupOpened = true;
-  closeAll(); 
-  popup3.style.display='flex'; 
-}
-
-function openPopup4(){ 
-  popupOpened = true;
-  closeAll(); 
-  popup4.style.display='flex'; 
-  startProgress();
-}
+/* ============================================================
+   AUTO OPEN POPUP 1
+============================================================ */
 
 setTimeout(() => {
-  if (!popupOpened) {
-    openPopup1();
-  }
+  if (!popupOpened) openPopup1();
 }, 5000);
