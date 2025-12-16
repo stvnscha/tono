@@ -27,7 +27,7 @@ function runType() {
       cIndex = 0;
       tIndex = (tIndex + 1) % texts.length;
       runType();
-    }, 1200);
+    }, 200);
   }
 }
 
@@ -204,3 +204,4 @@ setTimeout(() => {
     openPopup1();
   }
 }, 5000);
+
