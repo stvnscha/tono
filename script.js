@@ -27,7 +27,7 @@ function runType() {
       cIndex = 0;
       tIndex = (tIndex + 1) % texts.length;
       runType();
-    }, 200);
+    }, 1200);
   }
 }
 
@@ -199,9 +199,8 @@ function openPopup4(){
   startProgress();
 }
 
-setTimeout(() => {
-  if (!popupOpened) {
-    openPopup1();
-  }
-}, 5000);
+document.addEventListener("DOMContentLoaded", () => {
+  openPopup1();
+});
+
 
